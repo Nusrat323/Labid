@@ -1,0 +1,183 @@
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+
+
+.cake-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 50;
+}
+
+.cake-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #fefefe, #d0f4ff);
+  z-index: -1;
+}
+
+
+.cake-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  width: 90%;
+  max-width: 1200px;
+}
+
+@media (max-width: 768px) {
+  .cake-layout {
+    flex-direction: column;
+  }
+}
+
+
+.cake-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cake-img {
+  width: 150px;
+  max-width: 90vw;
+  height: auto;
+}
+
+.animate-drop {
+  animation: drop-cake 1s ease-out forwards;
+}
+
+@keyframes drop-cake {
+  0% { transform: translateY(-500px); opacity: 0; }
+  80% { transform: translateY(20px); opacity: 1; }
+  100% { transform: translateY(0); }
+}
+
+
+.candle-img {
+  width: 50px;
+  position: absolute;
+  top: -40px;
+}
+
+.animate-drop-candle {
+  animation: drop-candle 0.8s ease-out forwards;
+}
+
+@keyframes drop-candle {
+  0% { transform: translateY(-200px); opacity: 0; }
+  80% { transform: translateY(10px); opacity: 1; }
+  100% { transform: translateY(0); }
+}
+
+
+.cake-text {
+  font-size: 2.5rem;
+  color: #ff4081;
+  font-family: 'Great Vibes', cursive;
+  text-align: center;
+}
+
+@keyframes textUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-textUp {
+  animation: textUp 1s ease-out forwards;
+}
+
+
+.bunting-container {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  height: 80px;
+  z-index: 10;
+}
+
+.bunting-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #888;
+  border-radius: 1px;
+  transform: rotate(0deg);
+  
+  border-top-left-radius: 40%;
+  border-top-right-radius: 40%;
+}
+
+
+.pennant {
+  width: 50px;
+  height: 50px;
+  clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+  transform-origin: top center;
+  opacity: 0;
+  animation: buntingDrop 0.8s forwards, sway 3s ease-in-out infinite alternate;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+
+.pennant:nth-child(1){ background: linear-gradient(135deg,#f44336,#ff7961);}
+.pennant:nth-child(2){ background: linear-gradient(135deg,#ffeb3b,#fff59d);}
+.pennant:nth-child(3){ background: linear-gradient(135deg,#2196f3,#64b5f6);}
+.pennant:nth-child(4){ background: linear-gradient(135deg,#4caf50,#81c784);}
+.pennant:nth-child(5){ background: linear-gradient(135deg,#9c27b0,#ba68c8);}
+.pennant:nth-child(6){ background: linear-gradient(135deg,#e91e63,#f06292);}
+.pennant:nth-child(7){ background: linear-gradient(135deg,#ff9800,#ffb74d);}
+.pennant:nth-child(8){ background: linear-gradient(135deg,#00bcd4,#4dd0e1);}
+
+
+.pennant:nth-child(1){ animation-delay: 0s;}
+.pennant:nth-child(2){ animation-delay: 0.1s;}
+.pennant:nth-child(3){ animation-delay: 0.2s;}
+.pennant:nth-child(4){ animation-delay: 0.3s;}
+.pennant:nth-child(5){ animation-delay: 0.4s;}
+.pennant:nth-child(6){ animation-delay: 0.5s;}
+.pennant:nth-child(7){ animation-delay: 0.6s;}
+.pennant:nth-child(8){ animation-delay: 0.7s;}
+
+
+@keyframes buntingDrop {
+  0% { opacity: 0; transform: translateY(-50px) rotate(0deg);}
+  100% { opacity: 1; transform: translateY(0) rotate(0deg);}
+}
+
+
+@keyframes sway {
+  0% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+  100% { transform: rotate(-5deg); }
+}
+
+@keyframes slideIn {
+    0% { transform: translateX(100%) scale(0.8); opacity: 0; }
+    100% { transform: translateX(0) scale(1); opacity: 1; }
+  }
+  
+  .animate-slideIn {
+    animation: slideIn 0.8s ease-out forwards;
+  }
+  
+
+  

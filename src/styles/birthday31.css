@@ -1,0 +1,149 @@
+.birthday31-section {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #fff5f7, #ffe4e6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 50;
+}
+
+
+.birthday-number {
+  font-size: 8rem;
+  color: #f43f5e;
+  font-family: 'Great Vibes', cursive;
+  animation: pop 1s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.birthday-message {
+  font-size: 2rem;
+  text-align: center;
+  color: #f43f5e;
+  font-family: 'Great Vibes', cursive;
+  margin-top: 10px;
+  animation: fadeUp 1s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+.recap-button {
+  margin-top: 25px;
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  color: white;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+}
+
+
+
+.film-roll-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+
+
+.film-roll {
+  position: absolute;
+  width: 170px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  will-change: transform;
+}
+
+
+.left-roll {
+  left: 20px;
+  top: -120vh;
+  animation: rollDown 40s linear infinite;
+}
+
+
+.right-roll {
+  right: 20px;
+  top: -120vh;
+  animation: rollUp 40s linear infinite;
+}
+
+
+
+.film-frame {
+  display: flex;
+  align-items: stretch;
+  background: #2a2a2a;
+  padding: 10px 10px;
+  border-radius: 8px;
+  gap: 12px;
+}
+
+
+
+.perforation {
+  width: 8px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #ddd 0 6px,
+    transparent 6px 14px
+  );
+  border-radius: 4px;
+  opacity: 0.9;
+}
+
+
+.film-frame img {
+  width: 110px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+
+
+@keyframes rollDown {
+  0%   { transform: translateY(0); }
+  75%  { transform: translateY(220vh); }  
+  85%  { transform: translateY(220vh); }  
+  100% { transform: translateY(0); }     
+}
+
+@keyframes rollUp {
+  0%   { transform: translateY(0); }
+  75%  { transform: translateY(-220vh); }
+  85%  { transform: translateY(-220vh); }
+  100% { transform: translateY(0); }
+}
+
+
+
+.projector-flicker {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.05);
+  animation: flicker 0.15s infinite;
+  pointer-events: none;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.04; }
+  50% { opacity: 0.08; }
+  100% { opacity: 0.04; }
+}
