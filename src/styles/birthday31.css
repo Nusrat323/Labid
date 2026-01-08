@@ -1,3 +1,7 @@
+:root {
+  --roll-duration: 50s;
+}
+
 .birthday31-section {
   position: fixed;
   inset: 0;
@@ -9,7 +13,6 @@
   overflow: hidden;
   z-index: 50;
 }
-
 
 .birthday-number {
   font-size: 8rem;
@@ -37,8 +40,6 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-
-
 .recap-button {
   margin-top: 25px;
   padding: 12px 30px;
@@ -51,51 +52,31 @@
   box-shadow: 0 6px 16px rgba(0,0,0,.25);
 }
 
-
-
 .film-roll-container {
   position: absolute;
   inset: 0;
+  display: flex;
+  justify-content: space-between;
   pointer-events: none;
+  padding: 0 20px;
 }
 
-
-
 .film-roll {
-  position: absolute;
   width: 170px;
+  height: 100vh; 
+  overflow: hidden; 
   display: flex;
   flex-direction: column;
   gap: 32px;
-  will-change: transform;
 }
-
-
-.left-roll {
-  left: 20px;
-  top: -120vh;
-  animation: rollDown 40s linear infinite;
-}
-
-
-.right-roll {
-  right: 20px;
-  top: -120vh;
-  animation: rollUp 40s linear infinite;
-}
-
-
 
 .film-frame {
   display: flex;
-  align-items: stretch;
   background: #2a2a2a;
-  padding: 10px 10px;
+  padding: 10px;
   border-radius: 8px;
   gap: 12px;
 }
-
-
 
 .perforation {
   width: 8px;
@@ -104,10 +85,7 @@
     #ddd 0 6px,
     transparent 6px 14px
   );
-  border-radius: 4px;
-  opacity: 0.9;
 }
-
 
 .film-frame img {
   width: 110px;
@@ -116,30 +94,11 @@
   border-radius: 6px;
 }
 
-
-
-@keyframes rollDown {
-  0%   { transform: translateY(0); }
-  75%  { transform: translateY(220vh); }  
-  85%  { transform: translateY(220vh); }  
-  100% { transform: translateY(0); }     
-}
-
-@keyframes rollUp {
-  0%   { transform: translateY(0); }
-  75%  { transform: translateY(-220vh); }
-  85%  { transform: translateY(-220vh); }
-  100% { transform: translateY(0); }
-}
-
-
-
 .projector-flicker {
   position: absolute;
   inset: 0;
   background: rgba(255,255,255,0.05);
   animation: flicker 0.15s infinite;
-  pointer-events: none;
 }
 
 @keyframes flicker {

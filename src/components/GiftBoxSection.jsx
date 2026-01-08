@@ -6,6 +6,7 @@ export default function GiftBoxSection({ opened, setOpened }) {
   const confetti = Array.from({ length: 28 });
 
   const [balloonCycle, setBalloonCycle] = useState(0);
+  const [showClickText, setShowClickText] = useState(true); 
 
   const balloonSetup = [
     { left: "10%", bottom: "-140px", distance: "-110vh" },
@@ -14,7 +15,6 @@ export default function GiftBoxSection({ opened, setOpened }) {
     { left: "80%", bottom: "-180px", distance: "-130vh" },
   ];
 
-  
   const balloonColors = ["#fb7185", "#facc15", "#60a5fa", "#FF0000"];
 
   useEffect(() => {
@@ -22,7 +22,6 @@ export default function GiftBoxSection({ opened, setOpened }) {
     return () => (document.body.style.overflow = "auto");
   }, [opened]);
 
-  
   useEffect(() => {
     if (!opened) return;
     const interval = setInterval(() => {
@@ -34,10 +33,10 @@ export default function GiftBoxSection({ opened, setOpened }) {
   return (
     <section className="relative h-screen flex flex-col items-center justify-center md:justify-start md:pt-40 bg-gradient-to-b from-white via-rose-50 to-pink-100 overflow-hidden text-gray-800">
 
-      {/* Glow */}
+     
       <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[520px] h-[520px] bg-pink-200/30 rounded-full blur-3xl" />
 
-      {/* 🎈 Balloons */}
+      
       {opened &&
         balloons.map((_, i) => (
           <svg
@@ -52,16 +51,13 @@ export default function GiftBoxSection({ opened, setOpened }) {
             }}
             viewBox="0 0 64 96"
           >
-            {/* Balloon body */}
             <ellipse cx="32" cy="40" rx="28" ry="40" fill={balloonColors[i]} />
-            {/* Balloon shine */}
             <ellipse cx="24" cy="30" rx="8" ry="14" fill="rgba(255,255,255,0.35)" />
-            {/* Balloon string */}
             <line x1="32" y1="80" x2="32" y2="96" stroke="#555" strokeWidth="2" />
           </svg>
         ))}
 
-      {/* 🎉 Confetti */}
+      
       {opened &&
         confetti.map((_, i) => (
           <span
@@ -78,7 +74,7 @@ export default function GiftBoxSection({ opened, setOpened }) {
           />
         ))}
 
-      {/* 🎂 Text */}
+     
       {opened && (
         <div
           className="absolute top-24 text-center animate-textUp z-10"
@@ -91,10 +87,15 @@ export default function GiftBoxSection({ opened, setOpened }) {
         </div>
       )}
 
-      {/* 🎁 Gift box */}
+    
       <div
-        onClick={() => !opened && setOpened(true)}
-        className="cursor-pointer select-none hover-scale z-10"
+        onClick={() => {
+          if (!opened) {
+            setOpened(true);
+            setShowClickText(false); 
+          }
+        }}
+        className="cursor-pointer select-none hover-scale z-10 flex flex-col items-center"
       >
         <svg
           viewBox="0 0 200 200"
@@ -117,6 +118,13 @@ export default function GiftBoxSection({ opened, setOpened }) {
           <rect x="30" y="90" width="140" height="105" rx="14" fill="#fb7185" />
           <rect x="94" y="90" width="12" height="105" fill="#fde68a" />
         </svg>
+
+        
+        {showClickText && !opened && (
+          <p className="mt-4 text-xl md:text-2xl text-pink-500 select-none">
+            Click on the box 
+          </p>
+        )}
       </div>
     </section>
   );

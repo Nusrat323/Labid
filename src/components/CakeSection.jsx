@@ -24,14 +24,14 @@ export default function CakeSection() {
       {/* Background */}
       <div className="cake-bg"></div>
 
-      {/* Curved Bunting */}
+     
       <div className="bunting-container">
         {pennants.map((_, i) => (
           <div key={i} className={`pennant pennant-${i}`}></div>
         ))}
       </div>
 
-      {/* Cake + Candle + Text */}
+     
       <div className="cake-layout">
         <div className="cake-wrapper">
           <img
