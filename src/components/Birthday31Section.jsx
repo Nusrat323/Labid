@@ -63,12 +63,13 @@ export default function Birthday31Section() {
       img.src = src;
       img.onload = () => {
         loaded++;
-        if (loaded === allMemories.length) setImagesLoaded(true);
+        if (loaded === allMemories.length) {
+          setImagesLoaded(true);
+        }
       };
     });
   }, []);
 
-  
   useEffect(() => {
     setShow31(true);
     const timer = setTimeout(() => {
@@ -85,7 +86,7 @@ export default function Birthday31Section() {
     setShowMemories(true);
   };
 
-  
+ 
   useEffect(() => {
     if (!showMemories || !imagesLoaded) return;
 
@@ -93,39 +94,34 @@ export default function Birthday31Section() {
     const right = rightRef.current;
 
     const scrollDistance = left.scrollHeight - left.clientHeight;
-    const duration = 50 * 1000; 
-    const pause = 2000; 
+    const duration = 50000; 
+    const pause = 2000;
 
     let startTime = null;
-    let animationFrame;
+    let raf;
 
-    const animateScroll = (timestamp) => {
-      if (!startTime) startTime = timestamp;
-      const elapsed = timestamp - startTime;
-
-      let progress = elapsed / duration;
-      if (progress > 1) progress = 1;
+    const animate = (t) => {
+      if (!startTime) startTime = t;
+      const progress = Math.min((t - startTime) / duration, 1);
 
       const offset = scrollDistance * progress;
       left.scrollTop = offset;
       right.scrollTop = offset;
 
       if (progress < 1) {
-        animationFrame = requestAnimationFrame(animateScroll);
+        raf = requestAnimationFrame(animate);
       } else {
-        
         setTimeout(() => {
           left.scrollTop = 0;
           right.scrollTop = 0;
           startTime = null;
-          animationFrame = requestAnimationFrame(animateScroll);
+          raf = requestAnimationFrame(animate);
         }, pause);
       }
     };
 
-    animationFrame = requestAnimationFrame(animateScroll);
-
-    return () => cancelAnimationFrame(animationFrame);
+    raf = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(raf);
   }, [showMemories, imagesLoaded]);
 
   return (
@@ -146,26 +142,27 @@ export default function Birthday31Section() {
         </button>
       )}
 
-      {showMemories && imagesLoaded && (
+      
+      {showMemories && (
         <>
           <div className="projector-flicker" />
 
           <div className="film-roll-container">
-            <div className="film-roll left-roll" ref={leftRef}>
+            <div className="film-roll" ref={leftRef}>
               {leftMemories.map((img, i) => (
                 <div className="film-frame" key={`L-${i}`}>
                   <div className="perforation" />
-                  <img src={img} alt="" loading="eager" />
+                  <img src={img} alt="" />
                   <div className="perforation" />
                 </div>
               ))}
             </div>
 
-            <div className="film-roll right-roll" ref={rightRef}>
+            <div className="film-roll" ref={rightRef}>
               {rightMemories.map((img, i) => (
                 <div className="film-frame" key={`R-${i}`}>
                   <div className="perforation" />
-                  <img src={img} alt="" loading="eager" />
+                  <img src={img} alt="" />
                   <div className="perforation" />
                 </div>
               ))}
@@ -176,10 +173,3 @@ export default function Birthday31Section() {
     </div>
   );
 }
-
-
-
-
-
-
-
